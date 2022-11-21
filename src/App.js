@@ -6,31 +6,34 @@ import { useEffect, useState } from 'react';
 
 function App() {
 
-  const [aWinner, set_aWinner] = useState("A");
-  const [aRunner, set_aRunner] = useState("A");
+  const [aWinner, set_aWinner] = useState(".");
+  const [aRunner, set_aRunner] = useState(".");
 
-  const [bWinner, set_bWinner] = useState("A");
-  const [bRunner, set_bRunner] = useState("A");
+  const [bWinner, set_bWinner] = useState(".");
+  const [bRunner, set_bRunner] = useState(".");
 
-  const [cWinner, set_cWinner] = useState("A");
-  const [cRunner, set_cRunner] = useState("A");
+  const [cWinner, set_cWinner] = useState(".");
+  const [cRunner, set_cRunner] = useState(".");
 
-  const [dWinner, set_dWinner] = useState("A");
-  const [dRunner, set_dRunner] = useState("A");
+  const [dWinner, set_dWinner] = useState(".");
+  const [dRunner, set_dRunner] = useState(".");
 
-  const [eWinner, set_eWinner] = useState("A");
-  const [eRunner, set_eRunner] = useState("A");
+  const [eWinner, set_eWinner] = useState(".");
+  const [eRunner, set_eRunner] = useState(".");
 
-  const [fWinner, set_fWinner] = useState("A");
-  const [fRunner, set_fRunner] = useState("A");
+  const [fWinner, set_fWinner] = useState(".");
+  const [fRunner, set_fRunner] = useState(".");
 
-  const [gWinner, set_gWinner] = useState("A");
-  const [gRunner, set_gRunner] = useState("A");
+  const [gWinner, set_gWinner] = useState(".");
+  const [gRunner, set_gRunner] = useState(".");
 
-  const [hWinner, set_hWinner] = useState("A");
-  const [hRunner, set_hRunner] = useState("A");
+  const [hWinner, set_hWinner] = useState(".");
+  const [hRunner, set_hRunner] = useState(".");
 
   const [data, setData] = useState(null);
+
+  const [groupsCollected, setGroupsCollected] = useState(null)
+  const [sortedGroups, setSortedGroups] = useState(null)
 
   const [sorted, setSorted] = useState(false);
   
@@ -38,16 +41,18 @@ function App() {
   function compare( a, b ) {
     if ( a.wins < b.wins ){
       return 1;
-    }
-    if ( a.wins > b.wins ){
+    } 
+    else if ( a.wins > b.wins ){
       return -1;
+    } 
+    else {
+      return 0;
     }
-    return 0;
   }
-  const [groupsCollected, setGroupsCollected] = useState(null)
 
-  const [sortedGroups, setSortedGroups] = useState(null)
-
+  function decide( a, b ) {
+    return Math.random() < 0.5 ? 0 : 1
+  }
 
   useEffect(() => {
     fetch("https://worldcupjson.net/teams")
@@ -132,17 +137,31 @@ function App() {
   }, [sortedGroups])
 
 
-  // const winner49 = useState("A");
-  // const winner50 = useState("A");
+  const winner49 = decide(aWinner, bRunner) == 0 ? aWinner : bRunner;
+  const winner50 = decide(cWinner, dRunner) == 0 ? cWinner : dRunner;
 
-  // const winner51 = useState("A");
-  // const winner52 = useState("A");
+  const winner51 = decide(eWinner, fRunner) == 0 ? eWinner : fRunner;
+  const winner52 = decide(gRunner, hRunner) == 0 ? gRunner : hRunner;
+  
+  const winner53 = decide(bWinner, aRunner) == 0 ? bWinner : aRunner;
+  const winner54 = decide(dWinner, cRunner) == 0 ? dWinner : cRunner;
 
-  // const winner53 = useState("A");
-  // const winner54 = useState("A");
+  const winner55 = decide(fWinner, eRunner) == 0 ? fWinner : eRunner;
+  const winner56 = decide(hWinner, gWinner) == 0 ? hWinner : gWinner;
 
-  // const winner55 = useState("A");
-  // const winner56 = useState("A");
+
+  const winner57 = decide(winner49, winner50) == 0 ? winner49 : winner50;
+
+  const winner58 = decide(winner51, winner52) == 0 ? winner51 : winner52;
+
+  const winner59 = decide(winner53, winner54) == 0 ? winner53 : winner54;
+
+  const winner60 = decide(winner55, winner56) == 0 ? winner55 : winner56;
+
+
+  const winner61 = decide(winner57, winner58) == 0 ? winner57 : winner58;
+
+  const winner62 = decide(winner59, winner60) == 0 ? winner59 : winner60;
 
   
 
@@ -197,53 +216,56 @@ function App() {
       matchNumber: 8,
     },
     {
-      homeTeamName: ".",
-      awayTeamName: ".",
+      homeTeamName: winner49,
+      awayTeamName: winner50,
       round: 2,
       matchNumber: 8,
     },
     {
-      homeTeamName: ".",
-      awayTeamName: ".",
+      homeTeamName: winner51,
+      awayTeamName: winner52,
       round: 2,
       matchNumber: 9,
     },
     {
-      homeTeamName: ".",
-      awayTeamName: ".",
+      homeTeamName: winner53,
+      awayTeamName: winner54,
       round: 2,
       matchNumber: 10,
     },
     {
-      homeTeamName: ".",
-      awayTeamName: ".",
+      homeTeamName: winner55,
+      awayTeamName: winner56,
       round: 2,
       matchNumber: 11,
     },
     {
-      homeTeamName: ".",
-      awayTeamName: ".",
+      homeTeamName: winner57,
+      awayTeamName: winner58,
       round: 3,
       matchNumber: 12,
     },
     {
-      homeTeamName: ".",
-      awayTeamName: ".",
+      homeTeamName: winner59,
+      awayTeamName: winner60,
       round: 3,
       matchNumber: 13,
     },
     {
-      homeTeamName: ".",
-      awayTeamName: ".",
+      homeTeamName: winner61,
+      awayTeamName: winner62,
       round: 4,
       matchNumber: 14,
     },
+    
 
   ];
 
   return (
-    <div className='App'>
-      <TournamentBracket matches={matches} orientation={"portrait"} displayMatchNumber={false}/>
+    <div className='bg'>
+      <div className='App'>
+        <TournamentBracket matches={matches} orientation={"portrait"} displayMatchNumber={false}/>
+      </div>
     </div>
   );
 }

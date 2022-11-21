@@ -4,6 +4,12 @@
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+  
+}
+
+.bg {
+  background-color: #6d98e7;
+  height: 100vh
 }
 
 .App-logo {
