@@ -39,14 +39,30 @@ function App() {
   
 
   function compare( a, b ) {
-    if ( a.wins < b.wins ){
+    if ( a.group_points < b.group_points ) {
       return 1;
     } 
-    else if ( a.wins > b.wins ){
+    else if ( a.group_points > b.group_points ) {
       return -1;
     } 
     else {
-      return 0;
+      if ( a.goal_differential < b.goal_differential ) {
+        return 1;
+      }
+      else if ( a.goal_differential > b.goal_differential ) {
+        return -1;
+      }
+      else {
+        if ( a.goals_for < b.goals_for ) {
+          return 1;
+        }
+        else if ( a.goals_for > b.goals_for ) {
+          return -1;
+        }
+        else {
+          return 0;
+        }
+      }
     }
   }
 
