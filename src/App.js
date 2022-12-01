@@ -157,13 +157,13 @@ function App() {
   const winner50 = decide(cWinner, dRunner) == 0 ? cWinner : dRunner;
 
   const winner51 = decide(eWinner, fRunner) == 0 ? eWinner : fRunner;
-  const winner52 = decide(gRunner, hRunner) == 0 ? gRunner : hRunner;
+  const winner52 = decide(gWinner, hRunner) == 0 ? gRunner : hRunner;
   
   const winner53 = decide(bWinner, aRunner) == 0 ? bWinner : aRunner;
   const winner54 = decide(dWinner, cRunner) == 0 ? dWinner : cRunner;
 
   const winner55 = decide(fWinner, eRunner) == 0 ? fWinner : eRunner;
-  const winner56 = decide(hWinner, gWinner) == 0 ? hWinner : gWinner;
+  const winner56 = decide(hWinner, gRunner) == 0 ? hWinner : gWinner;
 
 
   const winner57 = decide(winner49, winner50) == 0 ? winner49 : winner50;
